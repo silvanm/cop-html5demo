@@ -1,0 +1,27 @@
+=======================================================================
+upc cablecom CoP HTML 5 Demo
+=======================================================================
+
+Autor: Silvan Mühlemann (silvan@muehlemann.com)
+
+Based on slides by: Marcin Wichary (mwichary@google.com)
+                    Chrome DevRel Team (chrome-devrel@googlegroups.com)
+                    Alex Russell (slightlyoff@chromium.org)
+                    Brad Neuberg
+
+Uses reveal.js by Hakim El Hattab, http://hakim.se
+=======================================================================
+
+Diese Slides geben einen groben Überblick über die Features von "HTML5" (HTML5 hier als Marketing-Begriff verwendet ;-)
+
+Die Eigenleistung hier ist die Übersetzung auf Deutsch, die Auswahl von Features und den Einbau von Filmzitaten. :-)
+
+Die Slides funktioneren gut auf Chrome auf Windows. Alles andere wurde nicht getestet. IE7 dürfte eine hässliche
+Überraschung sein :-)
+
+@todo:
+- Inline-Style ersetzen durch CSS-Regeln
+- Testen auf anderen Browsern
+
+
+

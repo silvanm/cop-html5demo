@@ -1,0 +1,883 @@
+<!doctype html>
+<!--
+
+Author: Silvan Mühlemann <silvan@muehlemann.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Based on slides by: Marcin Wichary (mwichary@google.com)
+                    Chrome DevRel Team (chrome-devrel@googlegroups.com)
+                    Alex Russell (slightlyoff@chromium.org)
+                    Brad Neuberg
+
+Uses reveal.js by Hakim El Hattab, http://hakim.se
+-->
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>upc cablecom CoP HTML 5 Demo</title>
+
+    <meta name="author" content="Silvan Mühlemann">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+    <script>
+        jQuery().noConflict();
+    </script>
+    <script src="http://www.google.com/jsapi"></script>
+        <script>google.load("maps", "2");</script>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="lib/zenburn.css">
+</head>
+
+<body>
+
+<div id="reveal">
+
+<!-- Used to fade in a background when a specific slide state is reached -->
+<div class="state-background"></div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1>HTML5 Demo</h1>
+
+    <h3 class="inverted">CoP-Meeting vom 11.5.2012 </h3>
+
+    <p><img src="HTML5_Logo_256.png"></p>
+
+    <p>basiert auf <a href="http://slides.html5rocks.com/">html5rocks.com</a> und <a
+            href="http://lab.hakim.se/reveal-js/">reveal.js</a></p>
+    <p>von Silvan Mühlemann</p>
+</section>
+
+<section>
+    <h2>Was ist HTML5?</h2>
+
+    <p class="fragment"><em>HTML5</em></p>
+
+    <p class="fragment">...ist eigentlich...</p>
+
+    <p class="fragment">HTML5 + CSS3 + JavaScript </p>
+
+</section>
+
+<section>
+<section>
+    <h1>HTML</h1>
+    <h2>Schlau strukturiert!</h2>
+</section>
+
+<section>
+    <h2>XHTML war gestern</h2>
+
+    <p>Dies ist ein korrektes HTML5-Dokument!</p>
+                    <pre><code id="">&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;body&gt;
+    &lt;p class=&quot;irgendwas&quot; id='einfache-anf&uuml;hrungszeichen'&gt;I'll&lt;/p&gt;
+    &lt;p class=keine-anf&uuml;hrungszeichen&gt;be
+    &lt;input type=&quot;checkbox&quot; checked&gt;Back!&lt;/p&gt;
+&lt;/body&gt;
+                    </code></pre>
+
+    <a target="_blank" href="http://validator.w3.org/#validate_by_input">Checke diesen Code beim W3C</a>
+
+    <div class="supported-by">Alle Browser</div>
+</section>
+
+<section>
+    <h2>Neue Tags</h2>
+<pre><code class="two-columns">&lt;body&gt;
+&lt;header&gt;
+    &lt;hgroup&gt;
+        &lt;h1&gt;Seitentitel&lt;/h1&gt;
+
+        &lt;h2&gt;Untertitel&lt;/h2&gt;
+    &lt;/hgroup&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+    &lt;ul&gt;
+        Navigation...
+    &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;section&gt;
+    &lt;article&gt;
+        &lt;header&gt;
+            &lt;h1&gt;Title&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;section&gt;
+            Inhalt...
+        &lt;/section&gt;
+    &lt;/article&gt;
+    &lt;article&gt;
+        &lt;header&gt;
+            &lt;h1&gt;Title&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;section&gt;
+            Inhalt...
+        &lt;/section&gt;
+    &lt;/article&gt;
+&lt;/section&gt;
+
+&lt;aside&gt;
+    Top-Links...
+&lt;/aside&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;HTML5_Logo_256.png&quot;/&gt;
+    &lt;figcaption&gt;Grafik 1.1&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;footer&gt;
+    Copyright &copy;
+    &lt;time datetime=&quot;2010-11-08&quot;&gt;2010&lt;/time&gt;
+    .
+&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+
+    <a href="sample-html5-file.html" target="_blank">Das sieht dann so aus...</a>
+    <div class="supported-by">Alle Browser</div>
+</section>
+
+<section>
+    <h2>Neue Formularfelder</h2>
+
+    <form>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <pre><code>&lt;input type="text" <b>required</b> /&gt;</code></pre>
+                </td>
+                <td><input type="text" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <pre><code>&lt;input type="<b>email</b>" value="some@email.com" /&gt;</code></pre>
+                </td>
+                <td><input type="email" value="some@email.com"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <pre><code>&lt;input type="<b>range</b>" <b>min</b>="0" <b>max</b>="50" value="10" /&gt;
+                    </code></pre>
+                </td>
+                <td><input type="range" min="0" max="50" value="10"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <pre><code>&lt;input type="<b>search</b>" <b>results</b>="10" <b>placeholder</b>="Suche..." /&gt;
+                    </code></pre>
+                </td>
+                <td><input results="10" type="search" placeholder="Suche..."/></td>
+            </tr>
+            <tr>
+                <td>
+                                <pre><code>&lt;input type="<b>tel</b>" <b>placeholder</b>="(555) 555 55 55"
+                                    <b>pattern</b>="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" /&gt;</code></pre>
+                </td>
+                <td><input type="tel" placeholder="(555) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <pre><code>&lt;input type="<b>number</b>" <b>step</b>="1" <b>min</b>="-5" <b>max</b>="10" value="0"
+                        /&gt;</code></pre>
+                </td>
+                <td><input type="number" step="1" min="-5" max="10" value="0"/></td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <input type="submit">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+    <div class="supported-by">alle mit Polyfill</div>
+</section>
+
+<section>
+    <h2>Canvas-Bereich</h2>
+    <style>
+        #canvas-area {
+            background: white;
+            -webkit-border-radius: 8px;
+            -khtml-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+        }
+    </style>
+
+<pre><code>&lt;canvas id="canvas" width="838" height="220"&gt;&lt;/canvas&gt;
+
+    &lt;script&gt;
+    var canvasContext = document.getElementById("canvas").<b>getContext</b>("2d");
+    canvasContext.<b>fillRect</b>(250, 25, 150, 100);
+
+    canvasContext.<b>beginPath</b>();
+    canvasContext.<b>arc</b>(450, 110, 100, Math.PI * 1/2, Math.PI * 3/2);
+    canvasContext.<b>lineWidth</b> = 15;
+    canvasContext.<b>lineCap</b> = 'round';
+    canvasContext.<b>strokeStyle</b> = 'rgba(255, 127, 0, 0.5)';
+    canvasContext.<b>stroke</b>();
+    &lt;/script&gt;</code></pre>
+    <button onclick="drawOnCanvas()">Zeichne</button>
+    <br/>
+    <canvas id="canvas-area" width="438" height="225"></canvas>
+    <script defer>
+        function drawOnCanvas() {
+            var canvasContext = document.getElementById("canvas-area").getContext("2d");
+            canvasContext.fillRect(250, 25, 150, 100);
+            canvasContext.beginPath();
+            canvasContext.arc(450, 110, 100, Math.PI * 1 / 2, Math.PI * 3 / 2, false);
+            canvasContext.lineWidth = 15;
+            canvasContext.lineCap = 'round';
+            canvasContext.strokeStyle = 'rgba(255, 127, 0, 0.5)';
+            canvasContext.stroke();
+        }
+    </script>
+    <div class="supported-by">alle mit Polyfill</div>
+</section>
+
+<section>
+    <style>
+        #webgl-iframe {
+            border: none;
+            width: 100%;
+            height: 352px;
+        }
+    </style>
+    <h2>Canvas 3D (WebGL)</h2>
+<pre><code>&lt;canvas id="canvas" width="838" height="220"&gt;&lt;/canvas&gt;
+
+    &lt;script&gt;
+    var gl = document.getElementById("canvas").<b>getContext</b>("experimental-webgl");
+    gl.<b>viewport</b>(0, 0, canvas.width, canvas.height);
+    ...
+    &lt;/script&gt;
+</code></pre>
+    <iframe scrolling="no" src="http://slides.html5rocks.com/src/webgl/san_angeles.html" id="webgl-iframe"></iframe>
+    <div class="supported-by">alle ohne IE</div>
+</section>
+
+<section>
+    <h2>Audio und Video</h2>
+
+    <p>...macht dann Colin in 2 Wochen...</p>
+</section>
+</section>
+
+<section>
+    <section>
+        <h1>CSS3</h1>
+        <h2>Schön gestylt!</h2>
+    </section>
+
+    <section>
+        <style>
+        .row:nth-child(even) {
+          background: #333;
+        }
+        .row:nth-child(odd) {
+          background: #666;
+        }
+        </style>
+        <h2>Neue Selektoren</h2>
+
+        <p>...um zum Beispiel Tabellen mit Streifen zu versehen</p>
+
+        <pre><code>.row:<b>nth-child(even)</b> {
+    background: #dde;
+}
+.row:<b>nth-child(odd)</b> {
+    background: white;
+}
+        </pre>
+        </code>
+        <div class="margin" id="striped-table">
+            <div class="">Zeile 1</div>
+            <div class="">Zeile 2</div>
+            <div class="">Zeile 3</div>
+            <div class="">Zeile 4</div>
+        </div>
+
+        <button onclick="$('#striped-table div').addClass('row')">Klick mich</button>
+        <div class="supported-by">alle ausser IE8-</div>
+    </section>
+
+    <section>
+        <h2>Text Wrapping</h2>
+        <pre><code>div {
+  <b>text-overflow: ellipsis;</b>
+}</code></pre>
+
+        <div class="margin">
+            <div id="wrapping" class="">
+
+              <div style="overflow:hidden;-webkit-hyphen: auto;" class="example" >
+                  Das Leben geht ziemlich schnell vorbei.
+                  Wenn ihr nicht ab und zu anhaltet und euch umseht könnte ihr es verpasse
+              </div>
+              <div style="overflow:hidden;white-space:nowrap" class="example">
+                  Das Leben geht ziemlich schnell vorbei.
+                  Wenn ihr nicht ab und zu anhaltet und euch umseht könnte ihr es verpasse
+              </div>
+              <div style="text-overflow:ellipsis;white-space: nowrap;;overflow: hidden" class="example" >
+                  Das Leben geht ziemlich schnell vorbei.
+                  Wenn ihr nicht ab und zu anhaltet und euch umseht könnte ihr es verpasse
+              </div>
+            </div>
+        </div>
+        <input type="range" min="0" max="100" value="95" onchange="changeWrapping(event)">
+
+
+      <script defer>
+        function changeWrapping(event) {
+          document.getElementById('wrapping').style.width = event.target.value + '%';
+        }
+      </script>
+        <div class="supported-by">alle. Für IE8- jQuery Plugin verwenden</div>
+    </section>
+
+<section>
+<style>
+          #columns-no-example {
+            -webkit-column-count: 2;
+            -webkit-column-rule: 1px solid #bbb;
+            -webkit-column-gap: 2em;
+            -moz-column-count: 2;
+            -moz-column-rule: 1px solid #bbb;
+            -moz-column-gap: 2em;
+            column-count: 2;
+            column-rule: 1px solid #bbb;
+            column-gap: 2em;
+          }
+          #columns-no-example p {
+            font-size: 15px;
+          }
+          </style>
+              <h2>Spalten</h2>
+            <pre><code>-webkit-<b>column-count</b>: <span id="columns-no-value">2</span>;
+-webkit-<b>column-rule</b>: 1px solid #bbb;
+-webkit-<b>column-gap</b>: 2em;</code></pre>
+             <input type="range" min="1" max="6" value="2" onchange="changeColumnNoSlider(event)">
+              <script defer>
+                         function changeColumnNoSlider(event) {
+                           var val = event.target.value;
+                           document.getElementById('columns-no-value').textContent = val;
+                           var el = document.getElementById('columns-no-example');
+                           el.style.webkitColumnCount = val;
+                           el.style.MozColumnCount = val;
+                         }
+                       </script>
+              <div class="margin">
+                  <div id="columns-no-example" class="example">
+                      <p>
+                          DIE DUNKLE BEDROHUNG<br/>
+                          Die galaktische Republik wird von Unruhen erschüttert. Die Besteuerung der Handelsrouten zu weit entfernten Sternensystemen ist der Auslöser.<br/>
+                          In der Hoffnung, die Angelegenheit durch eine Blockade mit mächtigen Kampfschiffen zu beseiteigen, hat die unersättliche Handelsföderation jeglichen Transport zu dem kleinen Planeten Naboo eingestellt.
+                          Während der Kongreß der Republik endlose Debatten über diese beunruhigende Kette von Ereignissen führt, entsandte der oberste Kanzler insgeheim zwei Jedi-Ritter, Wächter des Friedens und der Gerechtigkeit, um den Konflikt beizulegen….
+                      </p>
+                  </div>
+              </div>
+    <div class="supported-by">alle ausser IE8-</div>
+              </section>
+
+    <section>
+        <h2>Border-Radius</h2>
+        <pre><code>#id {
+    -webkit-border-radius: 12px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+    border-radius: 12px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+}</code></pre>
+
+        <input type="range" min="1" max="30" value="2" onchange="changeBorderradius(event)">
+                     <script defer>
+                                function changeBorderradius(event) {
+                                  var val = event.target.value;
+                                  $('#border-radius').css('border-radius', val + 'px');
+                                }
+                              </script>
+
+        <div id="border-radius" class="example margin">
+        Cameron, wieviele Kilometer hast du gesagt, waren auf dem Ding, als wir abgefahren sind?! 126 und die Hälfte zwischen 4 und 5 Zehntel! Warum? Wieviele Kilometer hat er denn jetzt drauf?! Kilometeranzeige: 301,7Km!
+        </div>
+        <div class="supported-by">alle ausser IE8-</div>
+    </section>
+
+    <section>
+        <style>
+            .box-gradient {
+                background-image:         linear-gradient(to bottom, #444444, #999999);
+                background-image: -webkit-linear-gradient(top, #444444, #999999); /* Chrome 10+, Saf5.1+, iOS 5+ */
+
+            }
+        </style>
+        <h2>Gradient</h2>
+        <pre><code>.box-gradient {
+    background-color: #444444;
+    background-image:         linear-gradient(to bottom, #444444, #999999);
+}
+        </code></pre>
+        <div id="box-gradient" class="example  margin" style="font-size: 30px;line-height: inherit;">
+            Guten Morgen ... Oh, und falls wir uns nicht mehr sehen, guten Tag, guten Abend und gute Nacht!
+        </div>
+
+        <button onclick="$('#box-gradient').addClass('box-gradient')">Klick mich!</button>
+        <div class="supported-by">alle ausser IE8-</div>
+    </section>
+
+    <section>
+            <style>
+                .box_shadow {
+                  -webkit-box-shadow: 3px 3px 4px 4px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+                          box-shadow: 3px 3px 4px 4px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+
+                    text-shadow: 3px 3px 3px #000; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+                }
+            </style>
+            <h2>Schatten</h2>
+            <pre><code>.box-shadow {
+    box-shadow: 0px 0px 4px 0px #ffffff; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 3px #000; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
+            </code></pre>
+            <div id="box-shadow" class="example margin" style="font-size: 80px; line-height:90px;font-weight: bold">
+                Aber dieses Schiff kann nicht sinken!
+            </div>
+
+        <button onclick="$('#box-shadow').addClass('box_shadow', 'text-shadow')">Klick mich!</button>
+
+        <div class="supported-by">alle ausser IE8-</div>
+        </section>
+
+    <section>
+        <h2>Transformationen</h2>
+
+    <style>
+                #threed-example {
+                  margin: 50px 20px;
+                  -webkit-transform: rotateZ(0deg);
+                  -moz-transform: rotateZ(5deg);
+                  -o-transform: rotateZ(5deg);
+                  transform: rotateZ(5deg);
+                  -webkit-transition: -webkit-transform 2s ease-in-out;
+                  -moz-transition: -moz-transform 2s ease-in-out;
+                  -o-transition: -o-transform 2s ease-in-out;
+                  transition: transform 2s ease-in-out;
+                }
+                #threed-example:hover {
+                  -webkit-transform: rotateZ(-5deg);
+                  -moz-transform: rotateZ(-5deg);
+                  -o-transform: rotateZ(-5deg);
+                  transform: rotateZ(-5deg);
+                }
+              </style>
+
+
+    <pre><code>#threed-example {
+  -webkit-transition: -webkit-transform 2s ease-in-out;
+}
+#threed-example:hover {
+  -webkit-transform: rotateZ(-5deg);
+}
+</code></pre>
+                  <p id="threed-example" class="example">
+                      "Wollen wir etwas spielen?" - "Ok." - "Ich sehe etwas, was du nicht siehst und das ist orange und es ist klein..." - "Das bin ich!" - "Richtig...Also, es ist orange und äh...klein..." - "Das bin ich." - "Das ist orange und klein und hat weiße Streifen..." - "Ich. Und das nächste, darf ich raten, auch ich."
+                  </p>
+        <div class="supported-by">alle ausser IE8-</div>
+                  </section>
+
+        <section>
+            <h2>3D-Transformationen</h2>
+
+            <pre><code>.transform3d {
+                -webkit-transform: rotate3d(1, 0, 0, 50deg);
+                -webkit-perspective: 800
+            }
+                        </code></pre>
+
+
+            <div id="transform3d" style="-webkit-perspective: 800;font-size: 30px;margin: 0 80px">
+            <p>Episode IV</p>
+
+            <p>It is a period of civil war.
+            Rebel spaceships, striking from a
+            hidden base, have won their
+            first victory against the evil
+            Galactic Empire. During the battle,
+            Rebel spies managed to steal...</p>
+            </div>
+            <button onclick="$('#transform3d').css('-webkit-transform', 'rotate3d(1, 0, 0, 50deg)')">Klicke mich!</button>
+            <div class="supported-by">nur sehr moderne Browser</div>
+        </section>
+</section>
+<section>
+    <section>
+        <h1>JavaScript</h1>
+        <h2>Coole Features!</h2>
+    </section>
+
+    <section>
+        <h2>Benachrichtigungen</h2>
+        <pre><code>if (window.webkitNotifications.checkPermission() == 0) {
+  // you can pass any url as a parameter
+  window.webkitNotifications.createNotification(tweet.picture, tweet.title,
+      tweet.text).show();
+} else {
+  window.webkitNotifications.requestPermission();
+}</code></pre>
+
+        <p>
+          <button id="request_permission" href="#">Berechtigungen setzen für diese Seite</button>
+        </p>
+        <br>
+        <p>Twitter-Username</p>
+        <input type="text" id="username" value="username" />
+        <button id="show_tweets">Tweets anzeigen</button>
+
+    <script>
+        document.getElementById('request_permission').addEventListener('click', function() {
+                    window.webkitNotifications.requestPermission();
+                  }, false);
+
+                  document.getElementById('show_tweets').addEventListener('click', function() {
+                    readTweets();
+                  }, false);
+
+                  function readTweets() {
+                    var username = document.getElementById('username').value;
+                    if (username == 'username') {
+                      alert('Enter a username first');
+                      return;
+                    }
+                    var script = document.createElement("script");
+                    script.src = 'http://twitter.com/statuses/user_timeline/'+ username+'.json?count=1&callback=fetchTweets';
+                    document.body.appendChild(script);
+                  }
+
+                  function fetchTweets(data) {
+                    var tweet;
+                    var i = data.length;
+                    while (i--) {
+                      tweet = data[i];
+                      if (window.webkitNotifications.checkPermission() == 0) {
+                        // note the show()
+                        window.webkitNotifications.createNotification(tweet.user.profile_image_url, tweet.user.name, tweet.text).show();
+                      } else {
+                        // Note that we can't call requestPermission from here as we are in the callback function and not triggered just on user action
+                        alert('You have to click on "Set notification permissions for this page" first to be able to receive notifications.');
+                        return;
+                      }
+                    }
+                  }
+    </script>
+    </section>
+    <section>
+        <h2>Ortsbestimmung</h2>
+        <pre><code>if (<b>navigator</b>.<b>geolocation</b>) {
+  <b>navigator</b>.<b>geolocation</b>.<b>getCurrentPosition</b>(function(position) {
+    var lat = position.<b>coords</b>.<b>latitude</b>;
+    var lng = position.<b>coords</b>.<b>longitude</b>;
+    map.setCenter(new GLatLng(lat, lng), 13);
+    map.addOverlay(new GMarker(new GLatLng(lat, lng)));
+  });
+}
+</code></pre>
+
+          <button id="see_position">Position anzeigen</button>
+          <div id="content" style="height: 280px"></div>
+
+          <script>
+          document.getElementById('see_position').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+                // also monitor position as it changes
+                navigator.geolocation.watchPosition(showPosition);
+            } else {
+              console.log("no geolocation supported-by");
+            }
+
+            function showPosition(position) {
+              var lat = position.coords.latitude;
+              var lng = position.coords.longitude;
+
+              var map = new GMap2(document.getElementById("content"));
+              map.setCenter(new GLatLng(lat, lng), 13);
+              map.addOverlay(new GMarker(new GLatLng(lat, lng)));
+            }
+          }, false);
+          </script>
+        <div class="supported-by">alle ausser IE8-</div>
+    </section>
+
+    <section>
+        <h2>Offline Storage</h2>
+        <pre><code>$('#save-to-localstorage').click(function() {
+  window.<b>localStorage</b>['value'] = area.value;
+  window.<b>localStorage</b>['timestamp'] = (new Date()).getTime();
+}, false);
+textarea.value = window.<b>localStorage</b>['value'];
+        </code></pre>
+        <br />
+        <p>Dieses Feld kann mit localStorage dauerhaft gespeichert werden:</p>
+        <textarea id="ta" style="width: 90%"></textarea>
+        <button id="save-to-localstorage">Speichern</button>
+        <!-- <div id="ta_log"></div> -->
+        <script type="text/javascript" charset="utf-8">
+          var area = document.querySelector('#ta');
+          // place content from previous edit
+          if (!area.value) {
+            area.value = window.localStorage.getItem('value');
+          }
+
+          // your content will be saved locally
+          $('#save-to-localstorage').click(function() {
+                window.localStorage.setItem('value', area.value);
+                window.localStorage.setItem('timestamp', (new Date()).getTime());
+              alert("Text gespeichert");
+          });
+
+        </script>
+        <div class="supported-by">nur mit Polyfill</div>
+    </section>
+
+    <section>
+        <h2>WebSockets</h2>
+        <p class="less-important">Führe folgenden Befehl aus, um den Testserver zu starten:<br/><code>php -f phpws/phpws/demo.php</code></p>
+        <script>
+(function() {
+        var socket;
+
+        websockets = {};
+
+        websockets.init = function(){
+          var host = "ws://localhost:12345/websocket/echo";
+          try{
+            socket = new WebSocket(host);
+            log('WebSocket - status '+socket.readyState);
+            socket.onopen    = function(msg){ log("Verbunden mit " + host + " - status "+this.readyState); };
+            socket.onmessage = function(msg){ log("Empfangen: "+msg.data); };
+            socket.onclose   = function(msg){ log("Verbindung getrennt - status "+this.readyState); };
+          }
+          catch(ex){ log(ex); }
+          _("msg").focus();
+        }
+
+        websockets.send = function(){
+          var txt,msg;
+          txt = _("msg");
+          msg = txt.value;
+          if(!msg){ alert("Message can not be empty"); return; }
+          txt.value="";
+          txt.focus();
+          try{ socket.send(msg); log('Gesendet: '+msg); } catch(ex){ log(ex); }
+        }
+
+        websockets.quit = function(){
+          log("Goodbye!");
+          socket.close();
+          socket=null;
+        }
+
+        // Utilities
+        function _(id){ return document.getElementById(id); }
+        function log(msg){ _("log").innerHTML+="<br>"+msg; }
+        websockets.onkey = function onkey(event){ if(event.keyCode==13){ send(); }}
+})();
+        </script>
+        <button onclick="websockets.init()">Verbinden</button>
+        <input id="msg" type="textbox" onkeypress="websockets.onkey(event)"/>
+        <button onclick="websockets.send()">Senden</button>
+        <button onclick="websockets.quit()">Trennen</button>
+        <div id="log"
+             style="text-align: left; background-color: black; color: white; font-family: monospace; font-size: 15px;line-height: 18px; margin: 10px" class="example">
+            Websocket Log-Output:
+        </div>
+        <div class="supported-by">nur mit Polyfill</div>
+    </section>
+
+    <section>
+        <style>
+                    #dropzone {
+                      height: 150px;
+                      width: 100%;
+                      -webkit-border-radius: 10px;
+                      -khtml-border-radius: 10px;
+                      -moz-border-radius: 10px;
+                      border-radius: 10px;
+                      border: 2px dashed #0687FF;
+                    }
+                    #dropzone.rounded {
+                      -webkit-box-shadow: inset 0px 0px 50px #777;
+                      -moz-box-shadow: inset 0px 0px 50px #777;
+                      -o-box-shadow: inset 0px 0px 50px #777;
+                      box-shadow: inset 0px 0px 50px #777;
+                    }
+                    #dnd-thumbnails {
+                      height: 125px;
+                      margin-top: 10px;
+                    }
+                    #dnd-thumbnails img {
+                      width: 75px;
+                      height: 75px;
+                      border: 1px solid black;
+                      margin-right: 10px;
+                      -webkit-transition: -webkit-transform 0.2s ease-in, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                      -moz-transition: -moz-transform 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                      -o-transition: -o-transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                    }
+                    #dnd-thumbnails img:hover {
+                      -webkit-transform: scale(3.0) rotate(10deg);
+                      -webkit-transform-origin: 50% 75px;
+                      -moz-transform: scale(3.0) rotate(10deg);
+                      -moz-transform-origin: 50% 75px;
+                      margin: 0 100px;
+                    }
+                  </style>
+        <h2>Dateien Desktop Drag-In (File-API + Drag&Drop)</h2>
+        <pre><code>document.querySelector('#dropzone').addEventListener('drop', function(e) {
+  var reader = new <b>FileReader</b>();
+  reader.onload = function(evt) {
+    document.querySelector('img').src = evt.target.<b>result</b>;
+  };
+
+  reader.<b>readAsDataURL</b>(e.<b>dataTransfer.files[0]</b>);
+}, false);
+        </code></pre>
+        <div >
+          <div id="dropzone" class="vbox boxcenter center">
+            Ziehe Bilder von Deinem Desktop hier hinein
+          </div>
+        </div>
+        <div id="dnd-thumbnails" class="center"></div>
+
+        <script src="http://slides.html5rocks.com/src/dnd/dnd-lib.js" defer></script>
+        <script defer>
+          window.addEventListener('load', function(e) {
+            var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
+          }, false);
+        </script>
+        <div class="supported-by">nur mit Polyfill</div>
+    </section>
+</section>
+
+<section>
+    <h2>Wie weiter?</h2>
+    <ul>
+        <li><a href="http://css3please.com/">css3please.com</a> liefert CSS3-Mustervorlagen für <em>alle</em> Browser</li>
+        <li><a href="http://html5boilerplate.com/">html5boilerplate.com</a> liefert eine Vorlage für eine HTML5-Seite</li>
+        <li><a href="http://html5please.com/">html5please.com</a> erklärt, welche HTML5-Features auf welchen Browsern verwendet werden kann</li>
+        <li><a href="http://slides.html5rocks.com">slides.html5rocks.com</a> war die Vorlage für diese Präsi</li>
+    </ul>
+</section>
+
+<section>
+    <h1>Das war's!</h1>
+    <h2>Danke für die Aufmerksamkeit.</h2>
+</section>
+
+
+<section>
+    <h1>THE END</h1>
+
+    <h3 class="inverted">Danke an <a href="http://slides.html5rocks.com/">html5rocks.com</a> und <a
+               href="http://lab.hakim.se/reveal-js/">reveal.js</a></h3>
+</section>
+</div>
+
+<!-- The navigational controls UI -->
+<aside class="controls">
+    <a class="left" href="#">&#x25C4;</a>
+    <a class="right" href="#">&#x25BA;</a>
+    <a class="up" href="#">&#x25B2;</a>
+    <a class="down" href="#">&#x25BC;</a>
+</aside>
+
+<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+<div class="progress"><span></span></div>
+
+</div>
+
+<script src="js/reveal.js"></script>
+
+<!-- Optional libraries for code syntax highlighting and classList supported-by in IE9 -->
+<script src="lib/highlight.js"></script>
+<script src="lib/classList.js"></script>
+
+<script>
+    // Parse the query string into a key/value object
+    var query = {};
+    location.search.replace(/[A-Z0-9]+?=(\w*)/gi, function (a) {
+        query[ a.split('=').shift() ] = a.split('=').pop();
+    });
+
+    // Fires when a slide with data-state=customevent is activated
+    Reveal.addEventListener('customevent', function () {
+        alert('"customevent" has fired');
+    });
+
+    // Fires each time a new slide is activated
+    Reveal.addEventListener('slidechanged', function (event) {
+        // event.indexh & event.indexv
+    });
+
+    Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls:true,
+
+        // Display a presentation progress bar
+        progress:true,
+
+        // If true; each slide will be pushed to the browser history
+        history:true,
+
+        // Loops the presentation, defaults to false
+        loop:false,
+
+        // Flags if mouse wheel navigation should be enabled
+        mouseWheel:true,
+
+        // Apply a 3D roll to links on hover
+        rollingLinks:true,
+
+        // UI style
+        theme:query.theme || 'default', // default/neon
+
+        // Transition style
+        transition:query.transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+
+    hljs.initHighlightingOnLoad();
+</script>
+
+</body>
+</html>
